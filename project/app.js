@@ -1,31 +1,38 @@
-const express = require('express');
-const path = require('path');
-const store = require('./store/datastore');
-const initialStoreData = require('./store/data');
-const Musician = require('./models/musician');
-const musicianRoutes = require('./routes/musician');
 
-const app = express();
-const port = process.env.PORT || 3001;
-
-// include routes
-app.use('/musician', musicianRoutes);
-
-app.use(express.static('public'));
-
-// Index route
-app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, 'client/build/index.html'));
-});
-
-// initialize store
-const musician = new Musician(store);
-musician.initStore(initialStoreData);
-app.locals.musician = musician;
-
-// start server
-const server = app.listen(port, () => {
-  console.log("Server started on port " + port);
-});
-
-module.exports = server;
+  "name": "cloud-server",
+  "version": "0.0.0",
+  "description": "Server for the cloud application!",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha --reporter spec",
+    "start": " node ./lib/server.js",
+    "apidoc": "apidoc -i project/ -o docs/"
+  },
+  "author": "Senior Design Team",
+  "license": "MIT",
+  "dependencies": {
+    "Promise": "^1.0.5",
+    "bmp-js": "0.0.3",
+    "body-parser": "^1.16.0",
+    "chai": "^3.5.0",
+    "connect-busboy": "0.0.2",
+    "express": "^4.14.1",
+    "fs-extra": "^2.1.2",
+    "jimp": "^0.2.27",
+    "jpeg-js": "^0.2.0",
+    "mime": "^1.3.4",
+    "mongoose": "^4.8.1",
+    "mysql": "^2.13.0",
+    "nodejs-broker": "^0.1.5",
+    "nodeman": "^1.1.2",
+    "passport": "^0.3.2",
+    "pngjs": "^3.0.1",
+    "sqlite3": "~3.1.8",
+    "tinycolor2": "^1.4.1"
+  },
+  "devDependencies": {
+    "apidoc": "^0.17.5",
+    "chai": "^3.5.0",
+    "mocha": "^3.2.0"
+  }
+}
