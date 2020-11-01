@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "mocha --reporter spec",
-    "start": " node ./lib/FileUpload/server.js",
+    "start": " node ./lib/server.js",
     "apidoc": "apidoc -i project/ -o docs/"
   },
   "author": "Senior Design Team",
